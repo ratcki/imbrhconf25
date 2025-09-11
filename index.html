@@ -303,6 +303,105 @@
     document.getElementById('logo-lg').src = LOGO_SRC;
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Agenda: load from public/agenda.json and render
+    (async () => {
+      const agendaSection = document.getElementById('agenda');
+      if (!agendaSection) return;
+      const staticGrid = agendaSection.querySelector('.grid.md\\:grid-cols-2');
+      const root = document.createElement('div');
+      root.id = 'agenda-root';
+      root.className = 'mt-8 grid md:grid-cols-2 gap-6';
+      if (staticGrid && staticGrid.parentNode) {
+        staticGrid.parentNode.insertBefore(root, staticGrid);
+      } else {
+        agendaSection.appendChild(root);
+      }
+      const setStatus = (html, cls='text-slate-500') => {
+        root.innerHTML = `<div class="col-span-2 text-center ${cls}">${html}</div>`;
+      };
+      setStatus('Loading agenda…');
+      try {
+        const res = await fetch('public/agenda.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        let data;
+        try { data = JSON.parse(text); }
+        catch (e) { throw new Error('Invalid JSON in agenda.json'); }
+        renderAgenda(data, root);
+        if (staticGrid) staticGrid.style.display = 'none';
+      } catch (err) {
+        console.error('Agenda load error:', err);
+        setStatus('Failed to load agenda', 'text-red-600');
+      }
+
+      function escapeHTML(s) {
+        return String(s ?? '').replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      }
+      function renderAgenda(data, container) {
+        container.innerHTML = '';
+        if (Array.isArray(data)) {
+          container.appendChild(renderDayColumns('Agenda', data));
+          return;
+        }
+        if (data && typeof data === 'object') {
+          for (const key of Object.keys(data)) {
+            const items = Array.isArray(data[key]) ? data[key] : [];
+            container.appendChild(renderDayColumns(key, items));
+          }
+          return;
+        }
+        setStatus('No agenda data', 'text-slate-500');
+      }
+      function renderDay(title, items) {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl border border-slate-200 bg-slate-50 p-6';
+        const h3 = document.createElement('h3');
+        h3.className = 'font-semibold text-slate-800';
+        h3.textContent = title;
+        card.appendChild(h3);
+        const ul = document.createElement('ul');
+        ul.className = 'mt-3 space-y-2 text-sm text-slate-700';
+        for (const it of items) {
+          const li = document.createElement('li');
+          const time = escapeHTML(it.time || '');
+          const topic = escapeHTML(it.topic || '');
+          const speaker = escapeHTML(it.speaker || '');
+          li.innerHTML = `<span class="font-semibold text-slate-800">${time}</span> — ${topic}` + (speaker && speaker !== '-' ? `<div class="text-slate-500 text-xs mt-0.5">${speaker}</div>` : '');
+          ul.appendChild(li);
+        }
+        card.appendChild(ul);
+        return card;
+      }
+
+      // New renderer with separate time/topic columns
+      function renderDayColumns(title, items) {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl border border-slate-200 bg-slate-50 p-6';
+        const h3 = document.createElement('h3');
+        h3.className = 'font-semibold text-slate-800';
+        h3.textContent = title;
+        card.appendChild(h3);
+        const ul = document.createElement('ul');
+        ul.className = 'mt-4 text-sm text-slate-700 divide-y divide-slate-200 border-t border-slate-200';
+        for (const it of items) {
+          const time = escapeHTML(it.time || '');
+          const topic = escapeHTML(it.topic || '');
+          const speaker = escapeHTML(it.speaker || '');
+          const li = document.createElement('li');
+          li.className = 'flex gap-4 py-3 items-start';
+          li.innerHTML = `
+            <span class="w-24 sm:w-28 shrink-0 font-semibold text-slate-800 leading-6">${time}</span>
+            <div class="min-w-0 flex-1 leading-6">
+              <div class="text-slate-800">${topic}</div>
+              ${speaker && speaker !== '-' ? `<div class="text-slate-500 text-xs mt-0.5">${speaker}</div>` : ''}
+            </div>`;
+          ul.appendChild(li);
+        }
+        card.appendChild(ul);
+        return card;
+      }
+    })();
+
     // Smooth-scroll for in-page anchors (enhanced for older browsers)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
