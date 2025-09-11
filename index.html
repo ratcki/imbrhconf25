@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0b3b6e" />
   <!-- Open Graph -->
   <meta property="og:title" content="งานประชุมวิชาการอายุรกรรม 2568 | โรงพยาบาลบุรีรัมย์" />
-  <meta property="og:description" content="Harmony of Care: Bridging General Care to Specialty Medicine — เข้าร่วมฟรี 6–7 พฤศจิกายน 2568 ณ หอประจำโรงพยาบาลบุรีรัมย์" />
+  <meta property="og:description" content="Harmony of Care: Bridging General Care to Specialty Medicine — เข้าร่วมฟรี 6–7 พฤศจิกายน 2568 ณ หอประชุมโรงพยาบาลบุรีรัมย์" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="Logo Internal Medicine BRH 2025.png" />
 
@@ -59,7 +59,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="#top" class="flex items-center gap-3 group" aria-label="หน้าแรก">
-          <img id="logo-sm" src="Logo Internal Medicine BRH 2025.png" alt="Internal Medicine Buriram Hospital" class="h-10 w-10 rounded-full ring-2 ring-brh-700/20 group-hover:ring-brh-700/40 transition" />
+          <img id="logo-sm" src="public/Logo.png" alt="Internal Medicine Buriram Hospital" class="h-10 w-10 rounded-full ring-2 ring-brh-700/20 group-hover:ring-brh-700/40 transition" />
           <div class="leading-none">
             <div class="text-sm text-slate-700">Internal Medicine</div>
             <div class="text-[10px] text-slate-500 -mt-0.5">Buriram Hospital</div>
@@ -100,7 +100,7 @@
           </p>
           <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-white/90 max-w-lg">
             <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>6–7 พ.ย. 2568</li>
-            <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>ณ หอประจำโรงพยาบาลบุรีรัมย์</li>
+            <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>ณ หอประชุมโรงพยาบาลบุรีรัมย์</li>
             <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>เข้าร่วมฟรี ไม่เสียค่าใช้จ่าย</li>
             <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-300"></span>กลุ่มเป้าหมาย: โรงพยาบาลชุมชน</li>
           </ul>
@@ -120,7 +120,7 @@
         <div class="relative">
           <div class="absolute -inset-6 rounded-3xl bg-white/10 blur-2xl"></div>
           <div class="relative mx-auto max-w-sm rounded-3xl bg-white shadow-2xl shadow-black/20 ring-8 ring-white/10 overflow-hidden">
-            <img id="logo-lg" src="Logo Internal Medicine BRH 2025.png" alt="ตราสัญลักษณ์แผนกอายุรกรรม โรงพยาบาลบุรีรัมย์" class="w-full h-full object-contain bg-white p-6" />
+            <img id="logo-lg" src="public/Logo.png" alt="ตราสัญลักษณ์แผนกอายุรกรรม โรงพยาบาลบุรีรัมย์" class="w-full h-full object-contain bg-white p-6" />
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="rounded-2xl bg-white p-5 border border-slate-200 shadow-sm">
               <div class="text-sm text-slate-500">สถานที่</div>
-              <div class="mt-1 font-semibold">หอประจำโรงพยาบาลบุรีรัมย์</div>
+              <div class="mt-1 font-semibold">หอประชุมโรงพยาบาลบุรีรัมย์</div>
             </div>
             <div class="rounded-2xl bg-white p-5 border border-slate-200 shadow-sm">
               <div class="text-sm text-slate-500">ค่าลงทะเบียน</div>
@@ -238,7 +238,7 @@
       <div class="grid lg:grid-cols-2 gap-8 items-start">
         <div>
           <h2 class="text-2xl sm:text-3xl font-bold text-brh-800">สถานที่จัดงาน</h2>
-          <p class="mt-3 text-slate-700">ณ หอประจำโรงพยาบาลบุรีรัมย์ จังหวัดบุรีรัมย์</p>
+          <p class="mt-3 text-slate-700">ณ หอประชุมโรงพยาบาลบุรีรัมย์ จังหวัดบุรีรัมย์</p>
           <ul class="mt-4 space-y-2 text-sm text-slate-600">
             <li>• มีที่จอดรถภายในโรงพยาบาล</li>
             <li>• กรุณามาถึงก่อนเวลาเพื่อความสะดวกในการลงทะเบียน</li>
@@ -295,7 +295,7 @@
     const EVENT_START_ISO = '2025-11-06T08:30:00+07:00';
     const EVENT_END_ISO   = '2025-11-07T16:30:00+07:00';
     // 3) Logo filename (place your provided PNG next to this HTML)
-    const LOGO_SRC = 'Logo Internal Medicine BRH 2025.png';
+    const LOGO_SRC = 'public/Logo.png';
 
     // Apply config
     document.getElementById('registerBtn').href = REGISTER_URL;
@@ -355,7 +355,7 @@
         `DTEND:${toICSDate(EVENT_END_ISO)}`,
         'UID:imconf-2568@buriram-hospital',
         'SUMMARY:งานประชุมวิชาการอายุรกรรม 2568 (BRH)',
-        'LOCATION:หอประจำโรงพยาบาลบุรีรัมย์, จังหวัดบุรีรัมย์',
+        'LOCATION:หอประชุมโรงพยาบาลบุรีรัมย์, จังหวัดบุรีรัมย์',
         'DESCRIPTION:Harmony of Care: Bridging General Care to Specialty Medicine',
         'END:VEVENT',
         'END:VCALENDAR'
