@@ -232,9 +232,6 @@
               ลงทะเบียนเข้าร่วม
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <button id="addCalendar" class="inline-flex items-center gap-2 rounded-2xl border border-white/30 bg-white/10 px-5 py-3 font-medium text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 scale-in stagger-2">
-              เพิ่มลงปฏิทิน (.ics)
-            </button>
           </div>
           <div class="mt-6 text-sm text-white/70 fade-in stagger-3">
             เริ่มงานในอีก <span id="dd" class="font-semibold">--</span> วัน <span id="hh" class="font-semibold">--</span> ชม. <span id="mm" class="font-semibold">--</span> นาที
@@ -723,36 +720,6 @@
       });
     });
 
-    // Add to Calendar (.ics)
-    document.getElementById('addCalendar').addEventListener('click', () => {
-      const dtStamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-      const toICSDate = (iso) => iso.replace(/[-:]/g, '').replace('.000','');
-      const ics = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//BRH IM Conference//TH',
-        'CALSCALE:GREGORIAN',
-        'METHOD:PUBLISH',
-        'BEGIN:VEVENT',
-        `DTSTAMP:${dtStamp}`,
-        `DTSTART:${toICSDate(EVENT_START_ISO)}`,
-        `DTEND:${toICSDate(EVENT_END_ISO)}`,
-        'UID:imconf-2568@buriram-hospital',
-        'SUMMARY:ประชุมวิชาการปีแผนกอายุรกรรม ประจำ 2568 (BRH)',
-        'LOCATION:ห้องประชุม 901 ชั้น 9 อาคารเฉลิมพระเกียรติฯ โรงพยาบาลบุรีรัมย์, จังหวัดบุรีรัมย์',
-        'DESCRIPTION:Harmony of Care: Bridging General Care to Specialty Medicine',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'BRH-IM-Conference-2568.ics';
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    });
   </script>
 </body>
 </html>
