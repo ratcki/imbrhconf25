@@ -308,19 +308,19 @@
         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 slide-left hover:shadow-lg hover:border-slate-300 transition-all duration-300 agenda-card">
           <h3 class="font-semibold text-slate-800 mb-4">วันพฤหัสบดีที่ 6 พ.ย. 2568</h3>
           <ul class="mt-3 space-y-2 text-sm text-slate-700">
-            <li class="agenda-item fade-in stagger-1 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">พิธีเปิด &amp; ปาฐกถาพิเศษ</li>
-            <li class="agenda-item fade-in stagger-2 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Update in General Internal Medicine</li>
-            <li class="agenda-item fade-in stagger-3 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Bridging Primary to Specialty: Cardio, Pulmo, Endo</li>
-            <li class="agenda-item fade-in stagger-4 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Interactive Case-based Discussion</li>
+            <li class="agenda-item fade-in stagger-1">พิธีเปิด &amp; ปาฐกถาพิเศษ</li>
+            <li class="agenda-item fade-in stagger-2">Update in General Internal Medicine</li>
+            <li class="agenda-item fade-in stagger-3">Bridging Primary to Specialty: Cardio, Pulmo, Endo</li>
+            <li class="agenda-item fade-in stagger-4">Interactive Case-based Discussion</li>
           </ul>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 slide-right hover:shadow-lg hover:border-slate-300 transition-all duration-300 agenda-card">
           <h3 class="font-semibold text-slate-800 mb-4">วันศุกร์ที่ 7 พ.ย. 2568</h3>
           <ul class="mt-3 space-y-2 text-sm text-slate-700">
-            <li class="agenda-item fade-in stagger-1 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Practical Workshops (ECG / ABG / Acute Care)</li>
-            <li class="agenda-item fade-in stagger-2 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Referral &amp; Co‑management Pathways</li>
-            <li class="agenda-item fade-in stagger-3 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">Quality &amp; Patient Safety in Continuum of Care</li>
-            <li class="agenda-item fade-in stagger-4 hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default">สรุปและปิดการประชุม</li>
+            <li class="agenda-item fade-in stagger-1">Practical Workshops (ECG / ABG / Acute Care)</li>
+            <li class="agenda-item fade-in stagger-2">Referral &amp; Co‑management Pathways</li>
+            <li class="agenda-item fade-in stagger-3">Quality &amp; Patient Safety in Continuum of Care</li>
+            <li class="agenda-item fade-in stagger-4">สรุปและปิดการประชุม</li>
           </ul>
         </div>
       </div>
@@ -520,7 +520,7 @@
           const li = document.createElement('li');
           // Add interactive classes to each agenda item
           const staggerClass = `stagger-${Math.min(i % 4 + 1, 4)}`;
-          li.className = `flex gap-4 py-3 items-start agenda-item fade-in ${staggerClass} hover:text-brh-700 hover:translate-x-2 transition-all duration-200 cursor-default hover:bg-white/50`;
+          li.className = `flex gap-4 py-3 items-start agenda-item fade-in ${staggerClass}`;
           li.innerHTML = `
             <span class="w-24 sm:w-28 shrink-0 font-semibold text-slate-800 leading-6">${time}</span>
             <div class="min-w-0 flex-1 leading-6">
