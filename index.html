@@ -208,24 +208,6 @@
           </a>
         </div>
 
-        <!-- Optional inline form placeholder (remove if using external form) -->
-        <details class="mt-6 group">
-          <summary class="cursor-pointer select-none text-sm text-slate-600 group-open:text-slate-800">ไม่มีลิงก์แบบฟอร์ม? คลิกเพื่อใช้เทมเพลตฟอร์มอย่างง่ายชั่วคราว</summary>
-          <form class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="event.preventDefault(); alert('ขอบคุณสำหรับการลงทะเบียน (ตัวอย่างเดโม่)');">
-            <input type="text" required placeholder="ชื่อ - สกุล" class="rounded-xl border-slate-300 focus:border-brh-500 focus:ring-brh-500" />
-            <input type="text" required placeholder="โรงพยาบาล / หน่วยงาน" class="rounded-xl border-slate-300 focus:border-brh-500 focus:ring-brh-500" />
-            <input type="email" required placeholder="อีเมล" class="rounded-xl border-slate-300 focus:border-brh-500 focus:ring-brh-500" />
-            <input type="tel" placeholder="โทรศัพท์" class="rounded-xl border-slate-300 focus:border-brh-500 focus:ring-brh-500" />
-            <div class="sm:col-span-2 flex items-center gap-3 mt-2">
-              <input id="agree" type="checkbox" required class="h-4 w-4 rounded border-slate-300 text-brh-600 focus:ring-brh-600" />
-              <label for="agree" class="text-sm text-slate-600">ยินยอมให้จัดเก็บข้อมูลเพื่อติดต่อกลับเกี่ยวกับงานประชุมนี้</label>
-            </div>
-            <button type="submit" class="sm:col-span-2 mt-2 inline-flex justify-center rounded-2xl bg-emerald-600 px-5 py-3 text-white font-semibold hover:bg-emerald-500">ส่งข้อมูล (เดโม่)</button>
-          </form>
-        </details>
-        <!-- End inline form -->
-
-        <p class="mt-6 text-xs text-slate-500">หมายเหตุ: ปุ่มลงทะเบียนจะเปิดลิงก์แบบฟอร์มที่ตั้งค่าไว้ในตัวแปร <code>REGISTER_URL</code> ภายในสคริปต์ด้านล่างของหน้านี้</p>
       </div>
     </div>
   </section>
