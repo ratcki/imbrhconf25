@@ -6,7 +6,6 @@ A responsive website for the Internal Medicine Department's annual academic conf
 
 - Responsive design with Tailwind CSS
 - Event countdown timer
-- Add to calendar (.ics) functionality
 - Registration form integration
 - Mobile-friendly navigation
 - Interactive FAQ section
@@ -25,12 +24,13 @@ A responsive website for the Internal Medicine Department's annual academic conf
 ```
 imbrhconf25/
 │
-├── index.html          # Main HTML file
-├── styles.css         # Custom CSS styles
-├── main.js           # JavaScript functionality
+├── index.html          # Main HTML file with embedded styles and scripts
 │
 └── public/           # Static assets
-    └── Logo.png      # Conference logo
+    ├── Logo.png      # Conference logo
+    ├── cover.png     # Social media cover image
+    ├── favicon.ico   # Website favicon
+    └── agenda.json   # Dynamic agenda data
 ```
 
 ## 🚀 Getting Started
@@ -42,16 +42,18 @@ imbrhconf25/
 
 2. Open `index.html` in your web browser or use a local development server.
 
-3. To customize the registration form, edit the `REGISTER_URL` constant in `main.js`.
+3. To customize the registration form, edit the `REGISTER_URL` constant in the `<script>` section of `index.html`.
 
 ## ⚙️ Configuration
 
-The following settings can be configured in `main.js`:
+The following settings can be configured in the `<script>` section of `index.html`:
 
 - `REGISTER_URL`: URL for the registration form
 - `EVENT_START_ISO`: Event start date/time in ISO 8601 format
 - `EVENT_END_ISO`: Event end date/time in ISO 8601 format
 - `LOGO_SRC`: Path to the conference logo image
+
+Additional agenda items can be configured in `public/agenda.json`.
 
 ## 📅 Event Details
 
