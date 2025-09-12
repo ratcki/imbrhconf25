@@ -75,7 +75,7 @@
   </script>
   <style>
     html, body { width: 100%; overflow-x: hidden; }
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:auto}
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
     
     /* Scroll Animation Classes */
@@ -584,19 +584,6 @@
       }
     });
 
-    // Smooth-scroll for in-page anchors (enhanced for older browsers)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (id.length > 1) {
-          const el = document.querySelector(id);
-          if (el) {
-            e.preventDefault();
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }
-      });
-    });
 
     // Countdown to event start
     const startDate = new Date(EVENT_START_ISO);
@@ -663,23 +650,7 @@
 
     window.addEventListener('scroll', requestParallaxTick, { passive: true });
 
-    // Header animation on scroll
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Scrolling down
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        // Scrolling up
-        header.style.transform = 'translateY(0)';
-      }
-      
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    }, { passive: true });
+    // Header stays fixed at top (removed hide/show animation)
 
     // Page load animations
     window.addEventListener('load', function() {
@@ -707,42 +678,7 @@
       }
     }
 
-    // Smooth scroll enhancement
-    const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    
-    function smoothScrollTo(targetY, duration = 800) {
-      const startY = window.pageYOffset;
-      const difference = targetY - startY;
-      const startTime = performance.now();
-      
-      function step() {
-        const progress = Math.min((performance.now() - startTime) / duration, 1);
-        const easedProgress = easeInOutCubic(progress);
-        
-        window.scrollTo(0, startY + difference * easedProgress);
-        
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        }
-      }
-      
-      requestAnimationFrame(step);
-    }
 
-    // Enhanced smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId.length > 1) {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            e.preventDefault();
-            const targetY = targetElement.offsetTop - 80; // Account for fixed header
-            smoothScrollTo(targetY, 1000);
-          }
-        }
-      });
-    });
 
   </script>
 </body>
