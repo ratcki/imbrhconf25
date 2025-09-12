@@ -73,14 +73,38 @@
           <a href="#faq" class="hover:text-brh-700">FAQ</a>
         </nav>
         <div class="flex items-center gap-3">
-          <a href="#register" class="inline-flex items-center gap-2 rounded-xl bg-brh-700 px-4 py-2 text-white shadow hover:bg-brh-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brh-500">
+          <a href="#register" class="hidden md:inline-flex items-center gap-2 rounded-xl bg-brh-700 px-4 py-2 text-white shadow hover:bg-brh-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brh-500">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m7-7H5"/></svg>
             ลงทะเบียน
           </a>
+          <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brh-500">
+            <svg id="hamburgerIcon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="closeIcon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <nav id="mobileMenu" class="fixed top-16 z-40 w-full bg-white/95 backdrop-blur border-b border-slate-200/60 transform -translate-y-full opacity-0 transition-all duration-300 md:hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="py-4 space-y-3">
+        <a href="#about" class="block py-3 text-slate-700 hover:text-brh-700 border-b border-slate-200 text-base">เกี่ยวกับงาน</a>
+        <a href="#agenda" class="block py-3 text-slate-700 hover:text-brh-700 border-b border-slate-200 text-base">กำหนดการ</a>
+        <a href="#venue" class="block py-3 text-slate-700 hover:text-brh-700 border-b border-slate-200 text-base">สถานที่</a>
+        <a href="#faq" class="block py-3 text-slate-700 hover:text-brh-700 border-b border-slate-200 text-base">FAQ</a>
+        <a href="#register" class="inline-flex items-center justify-center gap-2 w-full rounded-xl bg-brh-700 px-4 py-3 mt-2 text-white shadow hover:bg-brh-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brh-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m7-7H5"/></svg>
+          ลงทะเบียน
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero -->
   <section id="top" class="relative isolate overflow-hidden pt-28 sm:pt-32 bg-gradient-to-b from-brh-900 via-brh-800 to-brh-700 text-white">
@@ -388,6 +412,46 @@
         return card;
       }
     })();
+
+    // Mobile menu toggle functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    let isMenuOpen = false;
+
+    function toggleMobileMenu() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
+        mobileMenu.classList.add('translate-y-0', 'opacity-100');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+        mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMenuOpen) {
+          toggleMobileMenu();
+        }
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        toggleMobileMenu();
+      }
+    });
 
     // Smooth-scroll for in-page anchors (enhanced for older browsers)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
